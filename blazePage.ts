@@ -2,11 +2,11 @@ import {BasePage} from './basePage';
 import {By, until} from 'selenium-webdriver';
 
 export class Blaze extends BasePage {
-    homeBtn: By = By.xpath('//a[@class="nav-link"])[1]');
+    homeBtn: By = By.xpath('(//a[@class="nav-link"])[1]');
     cartBtn: By = By.xpath('(//a[@class="nav-link"])[4]');
     loginBtn: By = By.xpath('(//a[@class="nav-link"])[5]');
     signUpBtn: By = By.xpath('(//a[@class="nav-link"])[8]');
-    logoutBtn: By = By.xpath('(//a[@class="nav-link"])[6]');
+    logoutBtn: By = By.xpath('//a[text()="Log out"]');
     categoriesBtn: By = By.xpath('//a[@id="cat"]');
     phonesBtn: By = By.xpath('//a[text()="Phones"]');
     laptopsBtn: By = By.xpath('//a[text()="Laptops"]');

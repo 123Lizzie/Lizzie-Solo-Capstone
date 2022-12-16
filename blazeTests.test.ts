@@ -1,4 +1,4 @@
-import {Builder, Capabilities, WebDriver} from 'selenium-webdriver';
+import {Builder, Capabilities, WebDriver, until} from 'selenium-webdriver';
 import {Blaze} from './blazePage';
 const driver: WebDriver = new Builder().withCapabilities(Capabilities.chrome()).build();
 const blaze = new Blaze();
@@ -15,38 +15,45 @@ describe('Lizzie Solo Capstone Blaze Store Project', () => {
         await blaze.click(blaze.signUpBtn);
         await blaze.setInput(blaze.signUpUserInput, '1');
         await blaze.setInput(blaze.signUpPassInput, '1');
-        await blaze.click(blaze.signUpBtn1);
+        await blaze.click(blaze.signUpBtn1); 
     });
     test('Can login and logout', async () => {
         await blaze.login();
+        await driver.wait(until.elementLocated(blaze.logoutBtn));
         await blaze.click(blaze.logoutBtn);
     });
     test('Cart functionality while logged in', async () => {
         await blaze.login();
+        await driver.wait(until.elementLocated(blaze.samsungPhone));
         await blaze.click(blaze.samsungPhone);
         await blaze.click(blaze.addToCart);
+        await blaze.click(blaze.cartBtn);
+        await blaze.click(blaze.homeBtn);
+        await blaze.click(blaze.samsungPhone);
         await blaze.click(blaze.addToCart);
         await blaze.click(blaze.cartBtn);
-        await blaze.click(blaze.deleteBtn);
         await blaze.click(blaze.deleteBtn);
     });
     test('Cart functionality while not logged in', async () => {
         await blaze.click(blaze.samsungPhone);
         await blaze.click(blaze.addToCart);
+        await blaze.click(blaze.cartBtn);
+        await blaze.click(blaze.homeBtn);
+        await blaze.click(blaze.samsungPhone);
         await blaze.click(blaze.addToCart);
         await blaze.click(blaze.cartBtn);
-        await blaze.click(blaze.deleteBtn);
         await blaze.click(blaze.deleteBtn);
     });
     test('Can checkout while logged in', async () => {
         await blaze.login();
+        await driver.wait(until.elementLocated(blaze.samsungPhone));
         await blaze.click(blaze.samsungPhone);
         await blaze.click(blaze.addToCart);
         await blaze.click(blaze.cartBtn);
         await blaze.click(blaze.placeOrderBtn);
         await blaze.setInput(blaze.orderNameInput, 'Test Name');
         await blaze.setInput(blaze.orderCountryInput, 'USA');
-        await blaze.setInput(blaze.orderCityInput, 'Washington');
+        await blaze.setInput(blaze.orderCityInput, 'Las Vegas');
         await blaze.setInput(blaze.orderCreditCartInput, '1234 1234 1234 1234');
         await blaze.setInput(blaze.orderMonthInput, '1');
         await blaze.setInput(blaze.orderYearInput, '24');
@@ -60,7 +67,7 @@ describe('Lizzie Solo Capstone Blaze Store Project', () => {
         await blaze.click(blaze.placeOrderBtn);
         await blaze.setInput(blaze.orderNameInput, 'Test Name');
         await blaze.setInput(blaze.orderCountryInput, 'USA');
-        await blaze.setInput(blaze.orderCityInput, 'Washington');
+        await blaze.setInput(blaze.orderCityInput, 'Las Vegas');
         await blaze.setInput(blaze.orderCreditCartInput, '1234 1234 1234 1234');
         await blaze.setInput(blaze.orderMonthInput, '1');
         await blaze.setInput(blaze.orderYearInput, '24');
